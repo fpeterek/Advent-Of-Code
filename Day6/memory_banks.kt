@@ -1,3 +1,5 @@
+// Solves both first and second problem
+
 
 fun redistribute(banks: MutableList<Int>) {
 
@@ -29,10 +31,11 @@ fun main(args: Array<String>) {
     val banks = input.split(" ").map { it.toInt() }.toMutableList()
 
     val occuredCombinations = mutableListOf<String>()
+    var combination: String
 
     while (true) {
         redistribute(banks)
-        val combination = banks.fold("") { acc: String, i: Int -> "$acc$i " }
+        combination = banks.fold("") { acc: String, i: Int -> "$acc$i " }
 
         if (occuredCombinations.find {it == combination} != null) {
             break
@@ -42,6 +45,9 @@ fun main(args: Array<String>) {
 
     }
 
-    println(occuredCombinations.size + 1)
+    val loopSize = (occuredCombinations.size) - occuredCombinations.indexOf(combination)
+
+    println("Number of combinations: ${occuredCombinations.size + 1}")
+    println("Loop size: $loopSize")
 
 }
